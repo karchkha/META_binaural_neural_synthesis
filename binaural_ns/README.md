@@ -1,11 +1,6 @@
 # binaural-ns~
 
-"binaural-ns~" is a MAX/MSP extension object that can load and run a PyTorch neural network from the Facebook research https://github.com/facebookresearch/BinauralSpeechSynthesis.
-The object will take in the sound in real time and binaurize it through the neural network. This is the only experimental project (known to me) that runs binaural neural synthesis in real time.
-However, the performance is not perfect and there may be some glitches in the audio due to the latency and slowness of the neural network computations. The object will run python underneath.
-The Python server will run PyTorch and will support the GPU if your computer allows it. So the output will be fast enough using the GPU if it is available (and all drivers are properly installed) on the machine. The object takes the network name as an argument.
-For the object to function, you need to have sample rate = 48000 and buffer size = 2048 in your MAX patch. Also, you need to have Python installed on your computer with some libraries like Pytorch and NumPy.
-
+"binaural-ns~" is a MAX/MSP extension object that can (almost) run binaural neural synthesis in real time.
 
 ## Requirements
 
@@ -31,25 +26,26 @@ You will need to install above mentioned libriries in Python.
 
 #### GPU support
 
-If your GPU is cuda capable and you have your pytorch installed with appropriate cuda verision, python server will utilise GPU power. Otherwise object won't be able to reproduce sensable sound. 
+If your GPU is cuda capable and you have your pytorch installed with appropriate cuda verision, python server will utilise GPU power. Otherwise object won't be able to reproduce sensable sound!
 
 ## Getting Started
 
-Please download pretrained network binaural_network_1block.net from the link https://github.com/facebookresearch/BinauralSpeechSynthesis/releases/tag/v1.1 and place it in the externals folder.
+Please download the repositoy and place binaural_ns file in your MAX extentions directory. Then download pretrained network binaural_network_1block.net from the link https://github.com/facebookresearch/BinauralSpeechSynthesis/releases/tag/v1.1 and place it in the binaural_ns/externals folder.
 
-The binaural_ns~  help file demonstrates the use case for the object. With Spat5 control panel you user is able to control directiosn of the object. Put desiered audio files in the player or use microphone to binauralise your voice. 
+The binaural_ns~  help file demonstrates the use case for the object. With Spat5 control panel user is able to control direction of the object. Put desiered audio files in the player or use microphone to binauralise your voice.
+
 Obvously you need to use headphones to hear the effect fully.
 
-If everything is installed correctly in response to “server 1” message binaural_ns~ must:
+If everything is installed correctly the response to “server 1” message binaural_ns~ must:
 
 * Start command prompt window running python server dysplaying network summary.
-* It should display the CPU and GPU availability of the hosting machine. 
+* should display the CPU and GPU availability of the hosting machine. 
 * The binaural_ns~ must load network “binaural_network_1block.net” that is given as arguments.
-
+* MAX patch must give binauralised stereo sound.
 
 Additionally, you can try out “gpu_change,” “verbose,” and “clean” messages. A detailed explanation of every parameter and functionally is provided in the reference window.
 
-Please go ahead copy and adapt binaural_ns~ help patch to your own machine learning inference project!
+Please feel free to copy, change and adapt binaural_ns~ and help patch to your need!
 
 Good luck!!
 
