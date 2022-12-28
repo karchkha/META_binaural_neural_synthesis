@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<?xml-stylesheet href="./_c74_ref.xsl" type="text/xsl"?>
+
+<c74object name="binaural_ns" module="binaural_ns">
+
+    <digest>
+	Runs pytoch neural network in MAX for binaural neural synthesis.
+    </digest>
+
+    <description>
+    <ul>
+	"binaural_ns" is a MAX/MSP extension object that can load and run pytorch neural network by running the Python server. The python server will run Tensorflow library that is supporting GPU use. Thus, inference will be acquisitively fast use the GPU if available (and all drivers properly installed) on the machine. The object takes the network's name as and argument. Left input takes mono audio to be binaurilised. Right input takes object coordinate for binauralisation. For the object to function you need to set samole rate = 48000 and buffer sixe to 2048. Also you need to have Python installed on your machine, with some libraries as: Pytorch, numpy. Please see README file for detailed instunction!
+	</ul>
+    </description>
+
+    <!--METADATA-->
+    <metadatalist>
+	<metadata name="author">Tornike Karchkhadze</metadata>
+	<metadata name="tag">ml_tf_inferencer</metadata>
+    </metadatalist>
+
+    <!--INLETS-->
+    <inletlist>
+    </inletlist>
+
+    <!--OUTLETS-->
+    <outletlist>
+    </outletlist>
+
+    <!--ARGUMENTS-->
+    <objarglist>
+		<objarg name="filename" optional="1" type="character">
+			<digest>
+			Tensorflow/Keras network.
+		    </digest>
+		    <description>
+			Name of the Tensorflow/Keras neural network saved in h5 format.
+		    </description>
+		</objarg>
+    </objarglist>
+
+    <!--ATTRIBUTES-->
+    <attributelist>
+
+    	<attribute name="gpu" get="1" set="1" type="int" size="1">
+		    <digest>
+			Use GPU of the computer.
+		    </digest>
+		    <description>
+			This attribute gives posibility to deactivate or limit GPU usage by puthon server. @gpu -1 means GPU use is not limited and python sevrer will use whatever possible, 0 meand GPU off, any integer number (for example 2048) means amoung of MB of GPU that will be used.
+		    </description>
+		</attribute>
+    	<attribute name="verb" get="1" set="1" type="int" size="1">
+		    <digest>
+			Verbose data processing and timing.
+		    </digest>
+		    <description>
+			This attribute gives control on log data. When @verbose is 1 object will print execution times and details of data flow. It is usefull to see how much your prediction takes.
+		    </description>
+		</attribute>
+
+    </attributelist>
+
+    <!--MESSAGES-->
+    <methodlist>
+		
+		<method name="read">
+			<digest>
+			Load Tensorflow network.
+		    </digest>
+		    <description>
+			The message "read" followed by pytorch h5 network name that is located in the same directory as MAX patch or in other known directory for MAX (directories in file prefferences) loads network .h5 file into python server. A message "read" without filename opens dialog box to chose file.
+		    </description>
+		</method>
+
+		<method name="server">
+			<digest>
+			Python server on/off.
+		    </digest>
+		    <description>
+			Sending 1 or 0 with message "server" starts and stops python server.
+		    </description>
+		</method>
+
+		<method name="gpu_change">
+			<digest>
+			Control GPU usage.
+		    </digest>
+		    <description>
+			Sending intreger numneber with message "gpu_change" sets limit on GPU usage of to Tensorflow that runs in the python sevrer. -1 means no limit and server will use whatever is possible (if the computer has CUDA supported GPU card and CUDA drivers are installed), 0 means no GPU usage, any integer greater then 0 will limit GPU memory use (recomended amounts are powers of 2 = 1024, 2048, 4096...). Changing setiing of GPU restarts server. 
+		    </description>
+		</method>
+
+		<method name="verbose">
+			<digest>
+			Verbose running log data.
+		    </digest>
+		    <description>
+			Sending 0 or 1 with message "verbose" sets verbose flag of the object. 0 means no logs will be showed. 1 means, the object will send log data to MAX console. It will show status of the server, network file it is reading, input data shape expected, gpu status, the port numbers it is listening and sending to. In time of prediction it will print execution time data in miliseconds.
+		    </description>
+		</method>
+
+		<method name="clear">
+			<digest>
+			Cleaning object from all settings.
+		    </digest>
+		    <description>
+			Sending "clear" message restarst server (if running) and cleans all the settings, that inculdes: the network its running, input data shape, gpu setting (sets to -1), verbose setting (sets to 0). Use it to build process form the scratch.
+		    </description>
+		</method>
+
+    </methodlist>
+
+
+</c74object>
