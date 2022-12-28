@@ -8,9 +8,9 @@ For the object to function, you need to have sample rate = 48000 and buffer size
 
 Please refer to the respective file for more details, depending on whether you want to test the MAX extension or build it (change it) in the C++ MAX SDK environment.
 
-The project is extantion to: https://research.facebook.com/publications/neural-synthesis-of-binaural-speech-from-mono-audio/
+Binaural neural synthesis study: https://research.facebook.com/publications/neural-synthesis-of-binaural-speech-from-mono-audio/
 
-Github: https://github.com/facebookresearch/BinauralSpeechSynthesis study.
+Github: https://github.com/facebookresearch/BinauralSpeechSynthesis 
 
 See paper here: https://openreview.net/forum?id=uAX8q61EVRu
 
