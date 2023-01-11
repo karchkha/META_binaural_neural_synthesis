@@ -16,6 +16,7 @@
 
 ## Installation
 
+!!! It's for Windows only !!!
 For the instalation you treat this file as any other MAX package. Just place folder "binaural_ns" with all its subfolders into directory: C:\Users\username\Documents\Max 8\Packages\
 After this binaural_ns~ object must be seen form any MAX patch. Please see binaural_ns~ help patch to see it in action.
 
